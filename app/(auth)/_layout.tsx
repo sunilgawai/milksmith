@@ -2,7 +2,19 @@ import { Stack } from "expo-router";
 
 const AuthLayout = () => {
   return (
-    <Stack>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        headerStyle: { backgroundColor: "#6c47ff" },
+        headerTintColor: "#fff",
+        headerTitleAlign: "center",
+        headerTitleStyle: { fontSize: 24, fontWeight: "400" },
+        headerShadowVisible: false,
+        // headerBackVisible: false,
+        // headerBackTitleVisible: false,
+        headerBackTitle: "Back",
+      }}
+    >
       <Stack.Screen
         name="login"
         options={{
@@ -18,7 +30,7 @@ const AuthLayout = () => {
       <Stack.Screen
         name="new-password"
         options={{
-          title: "Anki Master",
+          title: "Milk Smith",
           headerBackTitle: "Back",
           headerTitleAlign: "center",
           headerTitleStyle: { fontSize: 24, fontWeight: "400" },
@@ -28,7 +40,7 @@ const AuthLayout = () => {
       <Stack.Screen
         name="forgot-password"
         options={{
-          title: "Anki Master",
+          title: "Milk Smith",
           headerBackTitle: "Back",
           headerTitleAlign: "center",
           headerTitleStyle: { fontSize: 24, fontWeight: "400" },
@@ -38,7 +50,7 @@ const AuthLayout = () => {
       <Stack.Screen
         name="confirm-email"
         options={{
-          title: "Anki Master",
+          title: "Milk Smith",
           headerBackTitle: "Back",
           headerTitleAlign: "center",
           headerTitleStyle: { fontSize: 24, fontWeight: "400" },

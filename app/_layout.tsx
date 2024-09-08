@@ -4,10 +4,11 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { router, Stack, useRootNavigationState } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 
@@ -15,6 +16,8 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  // const rootNavigationState = useRootNavigationState();
+  // if (!rootNavigationState.key) return;
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
@@ -24,7 +27,18 @@ export default function RootLayout() {
     if (loaded) {
       SplashScreen.hideAsync();
     }
+    const getToken = async () => {
+      const token = await AsyncStorage.getItem("token");
+      console.log("access_token", token);
+      if (!token) {
+        router.replace("/(tabs)");
+      } else {
+        router.replace("/(auth)");
+      }
+    };
+    getToken();
   }, [loaded]);
+
 
   if (!loaded) {
     return null;

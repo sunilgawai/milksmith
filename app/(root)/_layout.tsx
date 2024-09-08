@@ -75,6 +75,18 @@ export default function RootLayout() {
             title: "Create Deck",
           }}
         />
+        <Drawer.Screen
+          name="explore"
+          options={{
+            title: "Explore",
+            // tabBarIcon: ({ color, focused }) => (
+            //   <TabBarIcon
+            //     name={focused ? "code-slash" : "code-slash-outline"}
+            //     color={color}
+            //   />
+            // ),
+          }}
+        />
       </Drawer>
     </GestureHandlerRootView>
   );
