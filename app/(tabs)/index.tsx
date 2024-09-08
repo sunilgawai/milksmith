@@ -99,18 +99,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f5f5",
   },
   section: {
-    padding: 16,
+    padding: 24,
     backgroundColor: "#fff",
     marginBottom: 16,
+    fontSize: 18,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 25,
     fontWeight: "bold",
-    marginBottom: 8,
+    marginBottom: 10,
   },
   statusText: {
     color: "green",
-    fontWeight: "bold",
+    fontWeight: "900",
+    fontSize: 20,
   },
   quickActions: {
     flexDirection: "row",

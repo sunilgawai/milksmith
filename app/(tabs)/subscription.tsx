@@ -1,124 +1,239 @@
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { StyleSheet, Image, Platform } from "react-native";
+import { router } from "expo-router";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
+import { Card, Button, RadioButton } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import { Collapsible } from "@/components/Collapsible";
-import { ExternalLink } from "@/components/ExternalLink";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
+// Mock data (replace with actual data in your implementation)
+const mockInvoices = [
+  {
+    id: "1",
+    issueDate: "2024-09-01",
+    totalAmount: 500,
+    status: "Unpaid",
+    dueDate: "2024-09-15",
+  },
+  {
+    id: "2",
+    issueDate: "2024-08-15",
+    totalAmount: 450,
+    status: "Paid",
+    dueDate: "2024-08-30",
+  },
+  {
+    id: "3",
+    issueDate: "2024-08-01",
+    totalAmount: 550,
+    status: "Overdue",
+    dueDate: "2024-08-15",
+  },
+];
 
-export default () => {
+// 1. Invoice List Screen
+const InvoiceListScreen = ({ navigation }) => {
+  const renderInvoiceItem = ({ item }) => (
+    <SafeAreaView>
+    <Card style={styles.invoiceItem}>
+      <Card.Content>
+        <Text>Invoice Date: {item.issueDate}</Text>
+        <Text>Total Amount: ₹{item.totalAmount}</Text>
+        <Text
+          style={{
+            color:
+              item.status === "Paid"
+                ? "green"
+                : item.status === "Overdue"
+                ? "red"
+                : "orange",
+          }}
+        >
+          Status: {item.status}
+        </Text>
+        <Button
+          mode="contained"
+          onPress={() =>
+            navigation.navigate("InvoiceDetail", { invoice: item })
+          }
+          style={styles.buttonSpacing}
+        >
+          View Details
+        </Button>
+        {item.status === "Unpaid" && (
+          <Button
+            mode="contained"
+            onPress={() => navigation.navigate("Payment", { invoice: item })}
+            style={styles.buttonSpacing}
+          >
+            Pay Now
+          </Button>
+        )}
+      </Card.Content>
+    </Card>
+    </SafeAreaView>
+  );
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
-      headerImage={
-        <Ionicons size={310} name="code-slash" style={styles.headerImage} />
-      }
-    >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Subscription</ThemedText>
-      </ThemedView>
-      <ThemedText>
-        This app includes example code to help you get started.
-      </ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{" "}
-          and{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in{" "}
-          <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{" "}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the
-          web version, press <ThemedText type="defaultSemiBold">w</ThemedText>{" "}
-          in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the{" "}
-          <ThemedText type="defaultSemiBold">@2x</ThemedText> and{" "}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to
-          provide files for different screen densities
-        </ThemedText>
-        <Image
-          source={require("@/assets/images/react-logo.png")}
-          style={{ alignSelf: "center" }}
-        />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText>{" "}
-          to see how to load{" "}
-          <ThemedText style={{ fontFamily: "SpaceMono" }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{" "}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook
-          lets you inspect what the user's current color scheme is, and so you
-          can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{" "}
-          <ThemedText type="defaultSemiBold">
-            components/HelloWave.tsx
-          </ThemedText>{" "}
-          component uses the powerful{" "}
-          <ThemedText type="defaultSemiBold">
-            react-native-reanimated
-          </ThemedText>{" "}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The{" "}
-              <ThemedText type="defaultSemiBold">
-                components/ParallaxScrollView.tsx
-              </ThemedText>{" "}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      <Text style={styles.title}>Invoices</Text>
+      <FlatList
+        data={mockInvoices}
+        renderItem={renderInvoiceItem}
+        keyExtractor={(item) => item.id}
+      />
+    </View>
+  );
+};
+
+// 2. Invoice Detail Screen
+const InvoiceDetailScreen = ({ route, navigation }) => {
+  const { invoice } = route.params;
+
+  return (
+    <ScrollView style={styles.container}>
+      <Text style={styles.title}>Invoice Details</Text>
+      <Card style={styles.detailCard}>
+        <Card.Content>
+          <Text>Invoice Date: {invoice.issueDate}</Text>
+          <Text>Subscription Price: ₹{invoice.totalAmount * 0.8}</Text>
+          <Text>Extra Milk Orders: ₹{invoice.totalAmount * 0.2}</Text>
+          <Text>Discounts: ₹0</Text>
+          <Text>Total Amount: ₹{invoice.totalAmount}</Text>
+          <Text>Due Date: {invoice.dueDate}</Text>
+          {invoice.status === "Unpaid" && (
+            <Button
+              mode="contained"
+              onPress={() => navigation.navigate("Payment", { invoice })}
+              style={styles.buttonSpacing}
+            >
+              Pay Now
+            </Button>
+          )}
+          {invoice.status !== "Unpaid" && (
+            <Text style={{ color: "green", marginTop: 10 }}>Already Paid</Text>
+          )}
+        </Card.Content>
+      </Card>
+    </ScrollView>
+  );
+};
+
+// 3. Payment Screen
+const PaymentScreen = ({ route, navigation }) => {
+  const { invoice } = route.params;
+  const [paymentMethod, setPaymentMethod] = useState("Credit Card");
+
+  const handlePayment = () => {
+    // Simulate payment processing
+    setTimeout(() => {
+      navigation.replace("PaymentSuccess");
+    }, 2000);
+  };
+
+  return (
+    <ScrollView style={styles.container}>
+      <Text style={styles.title}>Payment</Text>
+      <Card style={styles.paymentCard}>
+        <Card.Content>
+          <Text>Invoice ID: {invoice.id}</Text>
+          <Text>Total Amount: ₹{invoice.totalAmount}</Text>
+          <Text style={styles.sectionTitle}>Select Payment Method:</Text>
+          <RadioButton.Group
+            onValueChange={(value) => setPaymentMethod(value)}
+            value={paymentMethod}
+          >
+            <View style={styles.radioButton}>
+              <RadioButton value="Credit Card" />
+              <Text>Credit Card</Text>
+            </View>
+            <View style={styles.radioButton}>
+              <RadioButton value="UPI" />
+              <Text>UPI</Text>
+            </View>
+          </RadioButton.Group>
+          <Button
+            mode="contained"
+            onPress={handlePayment}
+            style={styles.buttonSpacing}
+          >
+            Pay Now
+          </Button>
+        </Card.Content>
+      </Card>
+    </ScrollView>
+  );
+};
+
+// 4. Payment Success Screen
+const PaymentSuccessScreen = () => {
+  return (
+    <View style={[styles.container, styles.centerContent]}>
+      <Text style={[styles.title, { color: "green" }]}>
+        Payment Successful!
+      </Text>
+      <Text>Your payment has been processed. Thank you!</Text>
+      <Button
+        mode="contained"
+        onPress={() => router.replace("/")}
+        style={styles.buttonSpacing}
+      >
+        Back to Dashboard
+      </Button>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: "#808080",
-    bottom: -90,
-    left: -35,
-    position: "absolute",
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: "#f5f5f5",
   },
-  titleContainer: {
+  centerContent: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 16,
+  },
+  invoiceItem: {
+    marginBottom: 16,
+  },
+  detailCard: {
+    marginBottom: 16,
+  },
+  paymentCard: {
+    marginBottom: 16,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginTop: 16,
+    marginBottom: 8,
+  },
+  radioButton: {
     flexDirection: "row",
-    gap: 8,
+    alignItems: "center",
+    marginBottom: 8,
+  },
+  buttonSpacing: {
+    marginTop: 16,
   },
 });
+
+export {
+  InvoiceListScreen,
+  InvoiceDetailScreen,
+  PaymentScreen,
+  PaymentSuccessScreen,
+};
+
+export default InvoiceListScreen;
