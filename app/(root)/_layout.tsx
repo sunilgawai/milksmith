@@ -13,9 +13,11 @@ export default function RootLayout() {
         screenOptions={{
           drawerHideStatusBarOnOpen: false,
           drawerLabelStyle: {
-            // marginLeft: -20
+            color: "black",
+            fontSize: 15,
           },
         }}
+        initialRouteName="(tabs)"
       >
         <Drawer.Screen
           name="(tabs)"
@@ -66,7 +68,11 @@ export default function RootLayout() {
                     <Text style={{ color: "orange" }}> ₹ {10}</Text>
                   </View>
                   <Ionicons name="cart-outline" size={25} color={tintColor} />
-                  <Ionicons name="notifications-outline" size={25} color={tintColor} />
+                  <Ionicons
+                    name="notifications-outline"
+                    size={25}
+                    color={tintColor}
+                  />
                 </View>
               );
             },
@@ -81,7 +87,7 @@ export default function RootLayout() {
             headerTitle: "Profile",
             drawerLabel: "Profile",
             drawerIcon: ({ size, color }) => (
-              <Ionicons name="list-sharp" size={size} color={color} />
+              <Ionicons name="person-circle-sharp" size={size} color={color} />
             ),
           }}
         />
@@ -92,7 +98,7 @@ export default function RootLayout() {
             headerTitle: "Your Subscription",
             drawerLabel: "Subscription",
             drawerIcon: ({ size, color }) => (
-              <Ionicons name="list-sharp" size={size} color={color} />
+              <Ionicons name="wallet-sharp" size={size} color={color} />
             ),
           }}
         />
@@ -103,7 +109,7 @@ export default function RootLayout() {
             headerTitle: "Order History",
             drawerLabel: "Order History",
             drawerIcon: ({ size, color }) => (
-              <Ionicons name="list-sharp" size={size} color={color} />
+              <Ionicons name="arrow-redo-sharp" size={size} color={color} />
             ),
           }}
         />
@@ -114,7 +120,7 @@ export default function RootLayout() {
             headerTitle: "Tip Delivery Boy",
             drawerLabel: "Tip Delivery Boy",
             drawerIcon: ({ size, color }) => (
-              <Ionicons name="list-sharp" size={size} color={color} />
+              <Ionicons name="ticket-sharp" size={size} color={color} />
             ),
           }}
         />
@@ -125,7 +131,7 @@ export default function RootLayout() {
             headerTitle: "Manage Address",
             drawerLabel: "Manage Address",
             drawerIcon: ({ size, color }) => (
-              <Ionicons name="list-sharp" size={size} color={color} />
+              <Ionicons name="location-sharp" size={size} color={color} />
             ),
           }}
         />
@@ -136,7 +142,7 @@ export default function RootLayout() {
             headerTitle: "Delivery Instruction",
             drawerLabel: "Delivery Instruction",
             drawerIcon: ({ size, color }) => (
-              <Ionicons name="list-sharp" size={size} color={color} />
+              <Ionicons name="information-sharp" size={size} color={color} />
             ),
           }}
         />
@@ -147,7 +153,7 @@ export default function RootLayout() {
             headerTitle: "Wallet Balance",
             drawerLabel: "Wallet",
             drawerIcon: ({ size, color }) => (
-              <Ionicons name="list-sharp" size={size} color={color} />
+              <Ionicons name="wallet-sharp" size={size} color={color} />
             ),
           }}
         />
@@ -158,7 +164,7 @@ export default function RootLayout() {
             headerTitle: "My Queries",
             drawerLabel: "My Queries",
             drawerIcon: ({ size, color }) => (
-              <Ionicons name="list-sharp" size={size} color={color} />
+              <Ionicons name="ticket-sharp" size={size} color={color} />
             ),
           }}
         />
@@ -169,7 +175,7 @@ export default function RootLayout() {
             headerTitle: "My Queries",
             drawerLabel: "FAQs",
             drawerIcon: ({ size, color }) => (
-              <Ionicons name="list-sharp" size={size} color={color} />
+              <Ionicons name="logo-foursquare" size={size} color={color} />
             ),
           }}
         />
@@ -180,7 +186,7 @@ export default function RootLayout() {
             headerTitle: "Notification Setting",
             drawerLabel: "Notification Setting",
             drawerIcon: ({ size, color }) => (
-              <Ionicons name="list-sharp" size={size} color={color} />
+              <Ionicons name="notifications-sharp" size={size} color={color} />
             ),
           }}
         />

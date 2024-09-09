@@ -13,6 +13,10 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
+        tabBarStyle: {
+            height: 55,
+            paddingBottom: 5
+        }
       }}
     >
       <Tabs.Screen
@@ -33,17 +37,11 @@ export default function TabLayout() {
           title: "Products",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
+              name={focused ? "apps" : "code-slash-outline"}
               color={color}
             />
           ),
         }}
-        listeners={({ navigation }) => ({
-          tabPress: (e) => {
-            e.preventDefault();
-            navigation.navigate("explore");
-          },
-        })}
       />
       <Tabs.Screen
         name="payments"
@@ -51,7 +49,7 @@ export default function TabLayout() {
           title: "Payments",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "calendar" : "calendar-outline"}
+              name={focused ? "wallet" : "wallet-outline"}
               color={color}
             />
           ),
@@ -63,7 +61,7 @@ export default function TabLayout() {
           title: "Schedules",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "person" : "person-outline"}
+              name={focused ? "calendar" : "calendar-outline"}
               color={color}
             />
           ),
@@ -75,7 +73,7 @@ export default function TabLayout() {
           title: "Orders",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "person" : "person-outline"}
+              name={focused ? "list" : "person-outline"}
               color={color}
             />
           ),
