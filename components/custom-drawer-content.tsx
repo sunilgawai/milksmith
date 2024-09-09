@@ -11,28 +11,49 @@ const CustomDrawerContent = (props: any) => {
   const { top, bottom } = useSafeAreaInsets();
   return (
     <View style={{ flex: 1 }}>
-      <DrawerContentScrollView {...props} scrollEnabled={false}>
-        <View style={{ padding: 10 }}>
-          <Image
-            source={require("@/assets/images/partial-react-logo.png")}
+      <DrawerContentScrollView {...props} scrollEnabled>
+        <View style={{ padding: 15 }}>
+          <View
             style={{
-              height: 178,
+              height: 120,
               width: 290,
               alignSelf: "center",
+              padding: 15,
+              backgroundColor:"gray"
+              // zIndex: 1,
             }}
-          />
+          >
+            <Text>Sunil G. Gawai</Text>
+            <Text>7397973154</Text>
+            <Text>sunilgawai7397@gmail.com</Text>
+          </View>
+          {/* <Image
+            source={require("@/assets/images/partial-react-logo.png")}
+            style={{
+              height: 120,
+              width: 290,
+              alignSelf: "center",
+              zIndex: -1,
+            }}
+          /> */}
         </View>
 
         <DrawerItemList {...props}></DrawerItemList>
+        <DrawerItem label="ABOUT US" onPress={() => router.push("/")} />
+        <DrawerItem label="CONTACT US" onPress={() => router.push("/")} />
+        <DrawerItem
+          label="TERMS & PRIVACY POLICY"
+          onPress={() => router.push("/")}
+        />
         <DrawerItem label="Log Out" onPress={() => router.push("/")} />
-        {/* <View
+        <View
           style={{
             borderTopColor: "#dde3fe",
             paddingBottom: 10 + bottom,
           }}
         >
           <Text>Bottom</Text>
-        </View> */}
+        </View>
       </DrawerContentScrollView>
     </View>
   );

@@ -9,7 +9,7 @@ export default () => {
       const token = await AsyncStorage.getItem("token");
       console.log("access_token", token);
       if (!token) {
-        router.replace("/(tabs)");
+        router.replace("/(root)");
       } else {
         router.replace("/(auth)");
       }

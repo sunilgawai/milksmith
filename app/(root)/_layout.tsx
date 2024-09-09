@@ -17,74 +17,126 @@ export default function RootLayout() {
         }}
       >
         <Drawer.Screen
-          name="index"
+          name="(tabs)"
           options={{
             headerShown: true,
-            headerTitle: "Anki Decks React",
+            headerTitle: "Milk Subscription",
             drawerLabel: "Home",
             drawerIcon: ({ size, color }) => (
               <Ionicons name="list-sharp" size={size} color={color} />
             ),
+            // Hide Home lable from drawer but keep in use.
+            drawerItemStyle: { height: 0 },
           }}
         />
         <Drawer.Screen
-          name="decks"
+          name="profile"
           options={{
             headerShown: true,
-            headerTitle: "Anki Decks React",
-            drawerLabel: "Decks",
+            headerTitle: "Profile",
+            drawerLabel: "Profile",
             drawerIcon: ({ size, color }) => (
               <Ionicons name="list-sharp" size={size} color={color} />
             ),
           }}
         />
-        {/* <Drawer.Screen
-          name="../(auth)/login.tsx"
+        <Drawer.Screen
+          name="subscription"
           options={{
-            headerShown: false,
+            headerShown: true,
+            headerTitle: "Your Subscription",
+            drawerLabel: "Subscription",
             drawerIcon: ({ size, color }) => (
-              <Ionicons name="log-in-outline" size={size} color={color} />
-            ),
-          }}
-        /> */}
-        {/* <Drawer.Screen
-          name="statistics/index"
-          options={{
-            drawerLabel: "Statistics",
-            title: "Statistics",
-            drawerIcon: ({ size, color }) => (
-              <Ionicons name="bar-chart" size={size} color={color} />
+              <Ionicons name="list-sharp" size={size} color={color} />
             ),
           }}
         />
         <Drawer.Screen
-          name="settings/index" // This is the name of the page and must match the url from root
+          name="history"
           options={{
-            drawerLabel: "Settings",
-            title: "Settings",
+            headerShown: true,
+            headerTitle: "Order History",
+            drawerLabel: "Order History",
             drawerIcon: ({ size, color }) => (
-              <Ionicons name="settings" size={size} color={color} />
+              <Ionicons name="list-sharp" size={size} color={color} />
             ),
-          }}
-        /> */}
-        <Drawer.Screen
-          name="modal"
-          options={{
-            drawerItemStyle: { display: "flex" },
-            drawerLabel: "Deck Card",
-            title: "Create Deck",
           }}
         />
         <Drawer.Screen
-          name="explore"
+          name="tip"
           options={{
-            title: "Explore",
-            // tabBarIcon: ({ color, focused }) => (
-            //   <TabBarIcon
-            //     name={focused ? "code-slash" : "code-slash-outline"}
-            //     color={color}
-            //   />
-            // ),
+            headerShown: true,
+            headerTitle: "Tip Delivery Boy",
+            drawerLabel: "Tip Delivery Boy",
+            drawerIcon: ({ size, color }) => (
+              <Ionicons name="list-sharp" size={size} color={color} />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="address"
+          options={{
+            headerShown: true,
+            headerTitle: "Manage Address",
+            drawerLabel: "Manage Address",
+            drawerIcon: ({ size, color }) => (
+              <Ionicons name="list-sharp" size={size} color={color} />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="instructions"
+          options={{
+            headerShown: true,
+            headerTitle: "Delivery Instruction",
+            drawerLabel: "Delivery Instruction",
+            drawerIcon: ({ size, color }) => (
+              <Ionicons name="list-sharp" size={size} color={color} />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="wallet"
+          options={{
+            headerShown: true,
+            headerTitle: "Wallet Balance",
+            drawerLabel: "Wallet",
+            drawerIcon: ({ size, color }) => (
+              <Ionicons name="list-sharp" size={size} color={color} />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="queries"
+          options={{
+            headerShown: true,
+            headerTitle: "My Queries",
+            drawerLabel: "My Queries",
+            drawerIcon: ({ size, color }) => (
+              <Ionicons name="list-sharp" size={size} color={color} />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="faq"
+          options={{
+            headerShown: true,
+            headerTitle: "My Queries",
+            drawerLabel: "FAQs",
+            drawerIcon: ({ size, color }) => (
+              <Ionicons name="list-sharp" size={size} color={color} />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="notifications"
+          options={{
+            headerShown: true,
+            headerTitle: "Notification Setting",
+            drawerLabel: "Notification Setting",
+            drawerIcon: ({ size, color }) => (
+              <Ionicons name="list-sharp" size={size} color={color} />
+            ),
           }}
         />
       </Drawer>
